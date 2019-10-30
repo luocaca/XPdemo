@@ -1,6 +1,7 @@
 package xp.luocaca.xpdemo;
 
 import android.Manifest;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -37,13 +38,23 @@ public class MainActivity extends AppCompatActivity {
 
     List<OrderVo.OrderListbean> orderIds;
 
-    TextView paylog;
+   public TextView paylog;
+
+
+    public boolean isBeHook() {
+        return false;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         paylog = findViewById(R.id.paylog);
+
+        if (isBeHook()) {
+            paylog.setBackgroundColor(Color.RED);
+        }
+
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             String str[] = {Manifest.permission.WRITE_EXTERNAL_STORAGE};
@@ -71,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-        whileRetry();
+//        whileRetry();
     }
 
 

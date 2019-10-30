@@ -1,6 +1,11 @@
 package xp.luocaca.xpdemo;
 
-import android.widget.Button;
+import android.app.Activity;
+import android.content.Context;
+import android.os.Handler;
+import android.os.Message;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -17,149 +22,245 @@ import de.robv.android.xposed.callbacks.XC_LoadPackage;
  */
 
 public class HookToast implements IXposedHookLoadPackage {
+
+
+    public static ClassLoader 银行classerloader;
+
     @Override
     public void handleLoadPackage(XC_LoadPackage.LoadPackageParam loadPackageParam) throws Throwable {
 
 
-        if (!loadPackageParam.packageName.equals("com.fivetime.meidajs")) {
+        XposedBridge.log("------银行hook---------" + loadPackageParam.packageName);
+
+
+        if (loadPackageParam.packageName.equals("xp.luocaca.xpdemo")) {
+            XposedHelpers.findAndHookMethod(
+                    "xp.luocaca.xpdemo.MainActivity",
+                    loadPackageParam.classLoader,
+                    "isBeHook",
+                    new XC_MethodHook() {
+                        @Override
+                        protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+                            super.afterHookedMethod(param);
+                            param.setResult(true);
+                            Field field = param.thisObject.getClass().getDeclaredField("paylog");
+                            TextView textView = (TextView) field.get(param.thisObject);
+                            textView.setText("3杀777999");
+                        }
+                    });
+        }
+
+
+        if (!loadPackageParam.packageName.equals("com.buybal.buybalpay.nxy.fkepay")) {
             return;
         }
 
-        final Class clazz = loadPackageParam.classLoader.loadClass("com.fivetime.vpn.utils.DesBase64");
+//        final Class clazz = loadPackageParam.classLoader.loadClass("com.fivetime.vpn.utils.DesBase64");
 
 
-        XposedHelpers.findAndHookMethod(clazz, "decrypt", String.class, String.class, new XC_MethodHook() {
-            protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
-                XposedBridge.log("改1beforeHookedMethod别看了，老子已经成功Hook热重启\n" + param.getResult());
-                super.beforeHookedMethod(param);
-
-            }
-
-            protected void afterHookedMethod(MethodHookParam param) throws Throwable {
-                XposedBridge.log("afterHookedMethod劫持之前测试热重启改1" + param.getResult());
-                XposedBridge.log("afterHookedMethod劫持之后热重启改1" + param.getResult());
-                XposedBridge.log("改1beforeHookedMethod别看了，老子已经成功Hook热重启\n" + param.getResult());
-            }
-        });
+        // @Override
+        //    protected void attachBaseContext(Context base) {
+        //        super.attachBaseContext(base);
+        //    }
 
 
-        hookMainActivity(loadPackageParam);
+        XposedHelpers.findAndHookMethod(
+                "s.h.e.l.l.S",
+                loadPackageParam.classLoader,
+                "attachBaseContext",
+                Context.class,
+                new XC_MethodHook() {
+                    protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
+                        XposedBridge.log("改1beforeHookedMethod别看了，老子已经成功Hook热重启\n" + param.getResult());
+                        super.beforeHookedMethod(param);
+                        银行classerloader = param.thisObject.getClass().getClassLoader();
+
+                    }
+
+                    protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+
+                        Context context = ((Context) param.thisObject);
+                        Toast.makeText(context, "xposed hook 到银行项目了", Toast.LENGTH_SHORT).show();
+                        XposedBridge.log("xposed hook 到银行项目了");
 
 
-    }
+                        //用这个classloader 加载壳项目
 
-    /**
-     * hook main
-     *
-     * @param loadPackageParam
-     */
-    private void hookMainActivity(XC_LoadPackage.LoadPackageParam loadPackageParam) {
+//                        XposedHelpers.findAndHookMethod(
+//                                "com.buybal.buybalpay.activity.WelcomeActivity",
+//                                银行classerloader,
+//                                "onCreate",
+//                                Bundle.class,
+//                                new XC_MethodHook() {
+//                                    @Override
+//                                    protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+//                                        super.afterHookedMethod(param);
+//                                        ToastUtil.show(((Activity) param.thisObject), "首页被hook");
+//
+//
+//                                        银行classerloader = param.thisObject.getClass().getClassLoader();
+//
+//                                        XposedBridge.log("---银行---WelcomeActivity-");
+//
+//                                    }
+//                                });
 
-        //com.fivetime.vpn.activity
-        //MainActivity
+
+                        XposedBridge.log("银行classerloader->" + 银行classerloader);
+
+
+                        XposedHelpers.findAndHookMethod(
+                                "com.buybal.buybalpay.activity.ReciveAmtActivity",
+                                银行classerloader,
+                                "initData",
+//                                Bundle.class,
+                                new XC_MethodHook() {
+                                    @Override
+                                    protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+                                        super.afterHookedMethod(param);
+                                        ToastUtil.show(((Activity) param.thisObject), "收款界面hook");
+                                        XposedBridge.log("---银行--收款界面hook-");
+
+
+                                        //   private OkhttpNetHandler w = new OkhttpNetHandler() {
+
+
+                                        Class holder = XposedHelpers.findClass("com.buybal.buybalpay.net.okhttputil.OkhttpNetHandler", 银行classerloader);
+
+
+                                        Object o = holder.newInstance();
+
+
+//                                        final Field[] mCallbackSuper = holder.getFields();
+
+//                                        Field call = null;
+//                                        for (Field field : mCallbackSuper) {
+//                                            if (field.getName().equals("mCallback")) {
+//                                                call = field;
+//                                            }
+//                                        }
+
+                                        try {
+                                            XposedHelpers.setObjectField(o, "mCallback", new Handler.Callback() {
+                                                @Override
+                                                public boolean handleMessage(Message msg) {
+                                                    XposedBridge.log("----handlermessage-----" + msg.toString());
+                                                    return true;
+                                                }
+                                            });
+                                        } catch (Exception e) {
+                                            XposedBridge.log("-----失败" + e.getMessage());
+                                        }
+
+
+//                                        call.setAccessible(true);
+//                                        call.set(o, new Handler.Callback() {
+//                                            @Override
+//                                            public boolean handleMessage(Message msg) {
+//                                                XposedBridge.log("----handlermessage-----" + msg.toString());
+//                                                return false;
+//                                            }
+//                                        });
+//                                         new Handler(Looper.myLooper(), new Handler.Callback() {
+//                                             @Override
+//                                             public boolean handleMessage(Message msg) {
+//
+//                                                 XposedBridge.log("------");
+//                                                 return true;
+//                                             }
+//                                         });
+
+
+                                        Field field = XposedHelpers.findField(param.thisObject.getClass(), "w");
+                                        field.set(param.thisObject, o);
+
+
+                                        //getQrlink(this.n, AssistPushConsts.PUSHMESSAGE_ACTION_MULTI_BRAND_RECEIVE_XM);
+//                                        Method getqurlink = param.thisObject.getClass().getMethod("getQrlink", String.class, String.class);
+
+
+//                                        getqurlink.invoke(param.thisObject,"1","3");
+//                                        getqurlink.invoke(param.thisObject,"2","3");
+
+
+                                        for (int i = 10; i < 20; i++) {
+                                            Thread.sleep(2000);
+                                            XposedHelpers.callMethod(param.thisObject, "getQrlink", i + "", "3");
+                                        }
+
+                                    }
+                                });
+
+
+//                        XposedHelpers.findAndHookMethod(
+//                                "com.buybal.buybalpay.activity.ReciveAmtActivity$w",
+//                                银行classerloader,
+//                                "onHttpSuccess",
+////                                Bundle.class,
+//                                new XC_MethodReplacement() {
+//                                    @Override
+//                                    protected Object replaceHookedMethod(MethodHookParam param) throws Throwable {
+//
+//                                        XposedBridge.log("-----测试回调---------" + param.args[0]);
+//
+//
+//                                        return null;
+//                                    }
+//                                });
+
+
+//        hookMainActivity(loadPackageParam);
+
+
+                    }
+
+                    /**
+                     * hook main
+                     *
+                     * @param loadPackageParam
+                     */
+                    private void hookMainActivity(XC_LoadPackage.LoadPackageParam loadPackageParam) {
+
+                        //com.fivetime.vpn.activity
+                        //MainActivity
 //        private void prepareStartService(VpnProfile vpnProfile) {
 
 
-        Class clazz = null;
-        Class VpnProfile = null;
-        try {
-            clazz = loadPackageParam.classLoader.loadClass("com.fivetime.vpn.activity.MainActivity");
-            VpnProfile = loadPackageParam.classLoader.loadClass("com.fivetime.vpnservice.aidl.VpnProfile");
+                        Class clazz = null;
+                        Class VpnProfile = null;
+                        try {
+                            clazz = loadPackageParam.classLoader.loadClass("com.fivetime.vpn.activity.MainActivity");
+                            VpnProfile = loadPackageParam.classLoader.loadClass("com.fivetime.vpnservice.aidl.VpnProfile");
 
 
-            XposedBridge.log("VpnProfile 类是不是para被找到国m" + (VpnProfile == null));
+                            XposedBridge.log("VpnProfile 类是不是para被找到国m" + (VpnProfile == null));
 
 
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
+                        } catch (ClassNotFoundException e) {
+                            e.printStackTrace();
+                        }
 
-        XposedHelpers.findAndHookMethod(clazz, "prepareStartService", VpnProfile, new XC_MethodHook() {
-
-
-            protected void afterHookedMethod(MethodHookParam param) throws Throwable {
-                XposedBridge.log("VpnProfile" + param.args[0].toString());
-                XposedBridge.log("VpnProfile" + param.args[0].toString());
-                XposedBridge.log("VpnProfile" + param.args[0].toString());
-
-                Object obj = param.args[0];
+                        XposedHelpers.findAndHookMethod(clazz, "prepareStartService", VpnProfile, new XC_MethodHook() {
 
 
-                List<String> exclFild = new ArrayList<>();
+                            protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+                                XposedBridge.log("VpnProfile" + param.args[0].toString());
+                                XposedBridge.log("VpnProfile" + param.args[0].toString());
+                                XposedBridge.log("VpnProfile" + param.args[0].toString());
 
-//                exclFild.add("method");
-//                exclFild.add("password");
-//                exclFild.add("host");
-//                exclFild.add("remotePort");
-
-                //   Object[] objArr = new Object[5];
-                //        objArr[0] = this.method;
-                //        objArr[1] = this.auth ? "-auth" : "";
-                //        objArr[2] = this.password;
-                //        objArr[3] = this.host;
-                //        objArr[4] = Integer.valueOf(this.remotePort);
+                                Object obj = param.args[0];
 
 
-                validateFild(obj, exclFild);
+                                List<String> exclFild = new ArrayList<>();
 
 
-            }
-        });
+                            }
+                        });
 
 
-    }
+                    }
+                });
 
-
-    /**
-     * <p>Title: validateFild</p>
-     * <p>Description: 这是一个以反射机制为基础的判断对象内部的属性是否为空的方法</p>
-     *
-     * @param obj      要判断的对象实例
-     * @param exclFild 放行的属性, 不需要做判断的属性
-     * @return 布尔类型, 这个可以根据需求做出变更
-     */
-    public static boolean validateFild(Object obj, List<String> exclFild) {
-
-        boolean target = false;
-
-        for (Field f : obj.getClass().getDeclaredFields()) {
-            f.setAccessible(true);
-            try {
-                String name = f.getName();
-                // 判断属性名称是否在排除属性值中
-                // 判断字段是否为空，并且对象属性中的基本都会转为对象类型来判断
-                target = true;
-                System.out.println(name);
-                System.out.println(f.get(obj).toString());
-                XposedBridge.log(name);
-                XposedBridge.log(f.get(obj).toString());
-
-            } catch (IllegalArgumentException e) {
-                target = false;
-                System.out.println("对象属性解析异常" + e.getMessage());
-                return target;
-            } catch (IllegalAccessException e) {
-                target = false;
-                System.out.println("对象属性解析异常" + e.getMessage());
-                return target;
-            }
-        }
-        return target;
-    }
-
-
-    /**
-     * 设置button hook
-     *
-     * @param param
-     * @param clazz
-     */
-    private void setButtonText(XC_MethodHook.MethodHookParam param, Class clazz) throws Throwable {
-        Field field = clazz.getDeclaredField("button");
-        field.setAccessible(true);
-        XposedBridge.log("--设置button hook--");
-        Button button = (Button) field.get(param.thisObject);
-        button.setText("我被hook了66666");
 
     }
 }

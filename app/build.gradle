@@ -50,7 +50,7 @@ dependencies {
     implementation 'com.zhy:okhttputils:2.6.2'
 
     implementation 'com.squareup.okhttp3:okhttp:3.10.0'
-
+//    compile 'com.github.githubwing:HotXposed:v1.0.0'
 
 
 
