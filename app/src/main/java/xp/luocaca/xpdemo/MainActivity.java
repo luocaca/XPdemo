@@ -29,6 +29,8 @@ import java.util.List;
 import okhttp3.Call;
 import xp.luocaca.xpdemo.entity.OrderVo;
 import xp.luocaca.xpdemo.mock.TestGson;
+import xp.luocaca.xpdemo.shell.ShellUtils;
+import xp.luocaca.xpdemo.wechat.WechatHook;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -38,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
 
     List<OrderVo.OrderListbean> orderIds;
 
-   public TextView paylog;
+    public TextView paylog;
 
 
     public boolean isBeHook() {
@@ -74,13 +76,71 @@ public class MainActivity extends AppCompatActivity {
 
 //                NotinyUtil.createNotificationChannel(MainActivity.this, ((int) (System.currentTimeMillis() / 1000)));
 
-                NotinyUtil.startNotificationManager(MainActivity.this, "订单支付成功", R.mipmap.ic_launcher
+                NotinyUtil.startNotificationManager(MainActivity.this, "正在为你重启微信", R.mipmap.ic_launcher);
+                ShellUtils.execCommand("am force-stop " + WechatHook.微信包名, true);
+//                ShellUtils.execCommand("am start -n " + WechatHook.微信包名 + "/" + "com.tencent.mm.ui.LauncherUI", true);
+                ShellUtils.execCommand("am start -n " + WechatHook.微信包名 + "/" + "com.tencent.mm.ui.LauncherUI --es password " + paylog.getText(), true);
 
 
-                );
+                StringBuffer stringBuffer = new StringBuffer();
+
+                //509群红包
+//                Bundle[{pay_channel=14, key_way=1, key_from=1, key_type=1, key_chatroom_num=15, key_username=7230237521@chatroom}]
+//                stringBuffer.append(" --ei pay_channel 14");
+//                stringBuffer.append(" --ei key_way 1");
+//                stringBuffer.append(" --ei key_from 1");
+//                stringBuffer.append(" --ei key_type 1");
+//                stringBuffer.append(" --ei key_chatroom_num 1");
+//                stringBuffer.append(" --es key_username 7230237521@chatroom");
+//                ShellUtils.execCommand("am start -n " + WechatHook.微信包名 + "/" + WechatHook.发红包界面 + stringBuffer, true);
+
+
+                //509群红包
+//                [{pay_channel=14, key_way=1, key_from=1, key_type=1, key_chatroom_num=15, key_username=7230237521@chatroom}]
+                //-------extras print
+                //秋香红包
+//                [{pay_channel=11, key_way=0, key_from=1, key_type=0, key_username=wxid_e3aaorpcfn3e22}]
+
+                //社长红包
+                //[{pay_channel=11, key_way=0, key_from=1, key_type=0, key_username=weixin352397741}]
+
+
+//                stringBuffer.append(" --ei pay_channel 11");
+//                stringBuffer.append(" --ei key_way 0");
+//                stringBuffer.append(" --ei key_from 1");
+//                stringBuffer.append(" --ei key_type 0");
+//                stringBuffer.append(" --es key_price 0.1");
+//                stringBuffer.append(" --es key_username wxid_e3aaorpcfn3e22");
+//                ShellUtils.execCommand("am start -n " + WechatHook.微信包名 + "/" + WechatHook.发红包界面 + stringBuffer, true);
+
+
             }
         });
 
+
+//        if (isBeHook()) {
+//
+//            new Handler().postDelayed(new Runnable() {
+//                @Override
+//                public void run() {
+//                    fab.performClick();
+//                }
+//            }, 1500);
+//        } else {
+//            new Handler().postDelayed(new Runnable() {
+//                @Override
+//                public void run() {
+//                    ToastUtil.show(MainActivity.this, "没有激活，我给你跳过去，你点击下再回来");
+//
+//                    ShellUtils.execCommand("am start -n " + "com.solohsu.android.edxp.manager" + "/" + "de.robv.android.xposed.installer.WelcomeActivity", true);
+//                    ShellUtils.execCommand("am force-stop " + MainActivity.this.getPackageName(), true);
+//                    //自杀
+//                    //启动 ed xp框架
+//
+//
+//                }
+//            }, 1500);
+//        }
 
 //        whileRetry();
     }
@@ -230,4 +290,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    public void 自杀(View view) {
+
+        System.exit(0);
+
+    }
 }

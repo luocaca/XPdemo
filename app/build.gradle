@@ -12,9 +12,10 @@ android {
     }
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -46,14 +47,10 @@ dependencies {
     implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
 
 
-
     implementation 'com.zhy:okhttputils:2.6.2'
 
     implementation 'com.squareup.okhttp3:okhttp:3.10.0'
 //    compile 'com.github.githubwing:HotXposed:v1.0.0'
-
-
-
 
 
 }

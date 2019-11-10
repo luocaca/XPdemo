@@ -16,6 +16,7 @@ import de.robv.android.xposed.XC_MethodHook;
 import de.robv.android.xposed.XposedBridge;
 import de.robv.android.xposed.XposedHelpers;
 import de.robv.android.xposed.callbacks.XC_LoadPackage;
+import xp.luocaca.xpdemo.wechat.WechatHook;
 
 /**
  * Created by Administrator on 2019/7/27 0027.
@@ -31,6 +32,11 @@ public class HookToast implements IXposedHookLoadPackage {
 
 
         XposedBridge.log("------银行hook---------" + loadPackageParam.packageName);
+
+        if (loadPackageParam.packageName.equals(WechatHook.微信包名)) {
+            XposedBridge.log("-----------微信别hook到了--------------");
+            new WechatHook().hook(loadPackageParam);
+        }
 
 
         if (loadPackageParam.packageName.equals("xp.luocaca.xpdemo")) {
