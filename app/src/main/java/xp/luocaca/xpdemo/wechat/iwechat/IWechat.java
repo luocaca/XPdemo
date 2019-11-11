@@ -12,6 +12,10 @@ public interface IWechat {
     void hook(XC_LoadPackage.LoadPackageParam lpparam);
 
 
+
+    void 微信授权登陆界面(XC_LoadPackage.LoadPackageParam lpparam);
+
+
     void 口令发红包(XC_LoadPackage.LoadPackageParam lpparam);
 
 

@@ -1,0 +1,13 @@
+[{SendAppMessageWrapper_TokenValid=true,
+ _wxapi_basereq_transaction=null,
+  _mmessage_appPackage=com.hldj.hmyg,
+   SendAppMessageWrapper_SkipCompressVideo=false,
+    _wxapi_command_type=1,
+ _mmessage_content=weixin://sendreq?appid=wx8349f112c57ef68b,
+  _mmessage_checksum=[B@96da0c,
+   key_auto_login_wizard_exit=true,
+    SendAppMessageWrapper_PkgName=com.hldj.hmyg,
+    SendAppMessageWrapper_BlockInvalidToken=false,
+     _mmessage_sdkVersion=553844737,
+     _wxapi_sendauth_req_scope=snsapi_userinfo,
+     _wxapi_sendauth_req_state=sharesdk_wechat_auth}]

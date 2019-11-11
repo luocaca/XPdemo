@@ -1,12 +1,13 @@
 package net.androidwing.hotxposed;
 
-import android.app.AndroidAppHelper;
 import android.util.Log;
+
+import java.io.File;
+
 import dalvik.system.PathClassLoader;
 import de.robv.android.xposed.XC_MethodHook;
 import de.robv.android.xposed.XposedHelpers;
 import de.robv.android.xposed.callbacks.XC_LoadPackage;
-import java.io.File;
 
 /**
  * Created  on 2018/3/30.

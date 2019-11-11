@@ -23,6 +23,7 @@ import de.robv.android.xposed.XC_MethodHook;
 import de.robv.android.xposed.XposedBridge;
 import de.robv.android.xposed.XposedHelpers;
 import de.robv.android.xposed.callbacks.XC_LoadPackage;
+import xp.luocaca.xpdemo.ToastUtil;
 import xp.luocaca.xpdemo.shell.ShellUtils;
 import xp.luocaca.xpdemo.wechat.iwechat.IWechat;
 import xp.luocaca.xpdemo.wechat.share.WechatShareObject;
@@ -35,17 +36,29 @@ public class WechatHook implements IXposedHookLoadPackage, IWechat {
 
     public static final String 微信包名 = "com.tencent.mm";
     public static final String 发红包界面 = "com.tencent.mm.plugin.luckymoney.ui.LuckyMoneyPrepareUI";
+    public static final String 微信授权第三方登陆界面 = "com.tencent.mm.plugin.webview.ui.tools.SDKOAuthUI";
+    //        com.tencent.mm.plugin.webview.ui.tools.SDKOAuthUI
 
 
     @Override
     public void handleLoadPackage(XC_LoadPackage.LoadPackageParam lpparam) {
-        微信首页(lpparam);
+//        微信首页(lpparam);
 
-        口令发红包(lpparam);
-        自动输入密码(lpparam);
-        微信方法堆栈(lpparam);
-        微信方法日志i(lpparam);
-        聊天消息监听(lpparam);
+//        com.tencent.mm.plugin.webview.ui.tools.SDKOAuthUI
+
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                微信授权登陆界面(lpparam);
+            }
+        }, 3000);
+
+//        口令发红包(lpparam);
+//        自动输入密码(lpparam);
+//        微信方法堆栈(lpparam);
+//        微信方法日志i(lpparam);
+//        聊天消息监听(lpparam);
 
     }
 
@@ -53,6 +66,48 @@ public class WechatHook implements IXposedHookLoadPackage, IWechat {
     @Override
     public void hook(XC_LoadPackage.LoadPackageParam lpparam) {
         handleLoadPackage(lpparam);
+    }
+
+    @Override
+    public void 微信授权登陆界面(XC_LoadPackage.LoadPackageParam lpparam) {
+        //微信授权第三方登陆界面
+
+        XposedBridge.log("-------------微信授权登陆界面--------------");
+
+        XposedHelpers.findAndHookMethod(
+                微信授权第三方登陆界面,
+                lpparam.classLoader,
+                "onCreate",
+                Bundle.class,
+                new XC_MethodHook() {
+                    @Override
+                    protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
+
+                        super.beforeHookedMethod(param);
+                        XposedBridge.log("  getextras--微信授权登陆界面---getextras-----  ");
+
+                        Activity thisObject = ((Activity) param.thisObject);
+
+
+                        Bundle bundle = thisObject.getIntent().getExtras();
+
+                        ToastUtil.show(thisObject, "收到数据" + thisObject.getIntent().getExtras().toString());
+
+
+                        XposedBridge.log("  getextras--微信授权登陆界面---getextras-----  " + thisObject.getIntent().getExtras().toString());
+                        XposedBridge.log("  getextras--微信授权登陆界面---getextras-----  " + thisObject.getIntent().toString());
+
+
+                        for (String key : bundle.keySet()) {
+                            XposedBridge.log("getextras"+key);
+                            XposedBridge.log("getextrasBundle Contengetextrast " + bundle.getString(key));
+                        }
+
+
+                    }
+                });
+
+
     }
 
 
