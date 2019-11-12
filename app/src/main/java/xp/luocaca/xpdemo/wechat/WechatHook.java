@@ -17,6 +17,7 @@ import org.xmlpull.v1.XmlPullParserException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import de.robv.android.xposed.IXposedHookLoadPackage;
 import de.robv.android.xposed.XC_MethodHook;
@@ -26,6 +27,7 @@ import de.robv.android.xposed.callbacks.XC_LoadPackage;
 import xp.luocaca.xpdemo.shell.ShellUtils;
 import xp.luocaca.xpdemo.wechat.iwechat.IWechat;
 import xp.luocaca.xpdemo.wechat.share.WechatShareObject;
+import xp.luocaca.xpdemo.粗话系统.SensitivewordFilter;
 
 /**
  * hook 微信密码矿
@@ -92,13 +94,31 @@ public class WechatHook implements IXposedHookLoadPackage, IWechat {
                         });
 
 
+                        int 基数 = 1;
+                        if (WechatShareObject.回复的敏感词.contains("1点")) {
+                            基数 = 1;
+                        } else if (WechatShareObject.回复的敏感词.contains("2点")) {
+                            基数 = 2;
+                        } else if (WechatShareObject.回复的敏感词.contains("3点")) {
+                            基数 = 3;
+                        } else if (WechatShareObject.回复的敏感词.contains("4点")) {
+                            基数 = 4;
+                        } else if (WechatShareObject.回复的敏感词.contains("5点")) {
+                            基数 = 5;
+                        } else if (WechatShareObject.回复的敏感词.contains("6点")) {
+                            基数 = 6;
+                        }
+
+                        double realPrice = Double.parseDouble(price) * 基数;
+
                         for (int i = 0; i < editTexts.size(); i++) {
                             if (i == 0) {
-                                editTexts.get(i).setText("" + price);
+                                editTexts.get(i).setText("" + realPrice);
                             } else if (i == 1) {
                                 editTexts.get(i).setText("" + 1);
                             } else if (i == 2) {
-                                editTexts.get(i).setText("自动红包");
+                                editTexts.get(i).setText(WechatShareObject.回复的敏感词);
+//                                editTexts.get(i).setText("自动红包");
                             }
                         }
 
@@ -232,6 +252,9 @@ public class WechatHook implements IXposedHookLoadPackage, IWechat {
 
     public static long lastSendTime = 0;
 
+
+    private static SensitivewordFilter filter;
+
     @Override
     public void 聊天消息监听(XC_LoadPackage.LoadPackageParam lpparam) {
         /**
@@ -278,6 +301,8 @@ public class WechatHook implements IXposedHookLoadPackage, IWechat {
 
                 new
                         Thread(new Runnable() {
+
+
                     @Override
                     public void run() {
                         XposedBridge.log("----------微信消息内容----------" + contentValues.getAsString("content"));
@@ -286,7 +311,58 @@ public class WechatHook implements IXposedHookLoadPackage, IWechat {
                         //@chatroom
 
 
-                        if (content.contains("我要红包")) {
+                        if (filter == null) {
+                            filter = new SensitivewordFilter();
+                        }
+                        System.out.println("敏感词的数量：" + filter.sensitiveWordMap.size());
+
+                        System.out.println("待检测语句字数：" + content.length());
+                        long beginTime = System.currentTimeMillis();
+                        Set<String> set = filter.getSensitiveWord(content, 1);
+                        long endTime = System.currentTimeMillis();
+                        System.out.println("语句中包含敏感词的个数为：" + set.size() + "。包含：" + set);
+                        System.out.println("总共消耗时间为：" + (endTime - beginTime));
+
+                        String num1 = "da1c289d4e363f3ce1ff36538903b92f";
+                        String num2 = "9e3f303561566dc9342a3ea41e6552a6";
+                        String num3 = "dbcc51db2765c1d0106290bae6326fc4";
+                        String num4 = "9a21c57defc4974ab5b7c842e3232671";
+                        String num5 = "3a8e16d650f7e66ba5516b2780512830";
+                        String num6 = "5ba8e9694b853df10b9f2a77b312cc09";
+
+
+                        if (content.contains("我要红包") || set.size() > 0 ||
+                                content.contains(num1) ||
+                                content.contains(num2) ||
+                                content.contains(num3) ||
+                                content.contains(num4) ||
+                                content.contains(num5) ||
+                                content.contains(num6)
+                        ) {
+//                        if (content.contains("我要红包") || set.size() > 0) {
+
+
+                            if (content.contains("不许说脏话") || content.contains("给你想要的")) {
+                                System.out.println("不许说脏话===========过滤死循环===");
+                                return;
+                            }
+                            if (content.contains("我要红包")) {
+                                WechatShareObject.回复的敏感词 = "给你想要的。。";
+                            } else if (content.contains(num1)) {
+                                WechatShareObject.回复的敏感词 = "红包1点";
+                            } else if (content.contains(num2)) {
+                                WechatShareObject.回复的敏感词 = "红包2点。。";
+                            } else if (content.contains(num3)) {
+                                WechatShareObject.回复的敏感词 = "红包3点。。";
+                            } else if (content.contains(num4)) {
+                                WechatShareObject.回复的敏感词 = "红包4点。。";
+                            } else if (content.contains(num5)) {
+                                WechatShareObject.回复的敏感词 = "红包5点。。";
+                            } else if (content.contains(num6)) {
+                                WechatShareObject.回复的敏感词 = "红包6点。。";
+                            } else {
+                                WechatShareObject.回复的敏感词 = "不许说脏话：" + set.iterator().next();
+                            }
 
 
                             if (lastSendTime != 0) {
@@ -372,6 +448,9 @@ public class WechatHook implements IXposedHookLoadPackage, IWechat {
                         Activity thisObject = ((Activity) param.thisObject);
 
                         WechatShareObject.password = thisObject.getIntent().getStringExtra("password");
+
+                        WechatShareObject.wechatLaunchActivity = thisObject;
+                        WechatShareObject.wechatApplication = thisObject.getApplication();
 
 
                     }

@@ -1,13 +1,18 @@
 package xp.luocaca.xpdemo;
 
 import android.Manifest;
+import android.app.Application;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.annotation.Keep;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -43,6 +48,9 @@ public class MainActivity extends AppCompatActivity {
     public TextView paylog;
 
 
+    public static Application application;
+
+
     public boolean isBeHook() {
         return false;
     }
@@ -50,8 +58,12 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        this.application = this.getApplication();
+
         setContentView(R.layout.activity_main);
         paylog = findViewById(R.id.paylog);
+
 
         if (isBeHook()) {
             paylog.setBackgroundColor(Color.RED);
@@ -75,6 +87,14 @@ public class MainActivity extends AppCompatActivity {
 //                NotinyUtil.sendNotification(MainActivity.this);
 
 //                NotinyUtil.createNotificationChannel(MainActivity.this, ((int) (System.currentTimeMillis() / 1000)));
+
+                if (TextUtils.isEmpty(paylog.getText())) {
+                    ToastUtil.show(MainActivity.this, "密码未填写");
+                    return;
+                }
+
+
+                savePwd(MainActivity.this, paylog.getText().toString());
 
                 NotinyUtil.startNotificationManager(MainActivity.this, "正在为你重启微信", R.mipmap.ic_launcher);
                 ShellUtils.execCommand("am force-stop " + WechatHook.微信包名, true);
@@ -119,6 +139,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 //        if (isBeHook()) {
+//
 //
 //            new Handler().postDelayed(new Runnable() {
 //                @Override
@@ -295,4 +316,18 @@ public class MainActivity extends AppCompatActivity {
         System.exit(0);
 
     }
+
+
+    public static void savePwd(Context context, String pwd) {
+        SharedPreferences sharedPreferences = context.getSharedPreferences("pwd", Context.MODE_PRIVATE);
+        sharedPreferences.edit().putString("pwd", pwd).commit();
+    }
+
+
+    @Keep
+    public String getPwd() {
+        SharedPreferences sharedPreferences = getSharedPreferences("pwd", Context.MODE_PRIVATE);
+        return sharedPreferences.getString("pwd", "");
+    }
+
 }
