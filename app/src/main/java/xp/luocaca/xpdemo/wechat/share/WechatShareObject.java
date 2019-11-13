@@ -24,4 +24,14 @@ public class WechatShareObject {
 
     public static String 回复的敏感词 = "自动红包";
 
+
+    public static class Target {
+        public static boolean 开关1;
+        public static boolean 开关2;
+        public static boolean 开关3;
+        public static boolean 开关4;
+        public static boolean 开关5;
+    }
+
+
 }
