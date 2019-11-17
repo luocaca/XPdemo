@@ -1,4 +1,4 @@
-package xp.luocaca.testhook;
+package com.hldj.hmyg;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("xp.luocaca.testhook", appContext.getPackageName());
+        assertEquals("com.hldj.hmyg", appContext.getPackageName());
     }
 }

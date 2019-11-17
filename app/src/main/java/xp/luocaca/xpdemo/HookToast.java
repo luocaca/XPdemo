@@ -51,7 +51,11 @@ public class HookToast implements IXposedHookLoadPackage {
                             param.setResult(true);
                             Field field = param.thisObject.getClass().getDeclaredField("paylog");
                             TextView textView = (TextView) field.get(param.thisObject);
-                            textView.setText("3杀777999");
+                            Object object = XposedHelpers.callMethod(param.thisObject, "getPwd");
+
+                            if (object != null) {
+                                textView.setText(object.toString());
+                            }
                         }
                     });
         }

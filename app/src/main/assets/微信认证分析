@@ -10,4 +10,5 @@
     SendAppMessageWrapper_BlockInvalidToken=false,
      _mmessage_sdkVersion=553844737,
      _wxapi_sendauth_req_scope=snsapi_userinfo,
-     _wxapi_sendauth_req_state=sharesdk_wechat_auth}]
+     _wxapi_sendauth_req_state=sharesdk_wechat_auth}
+     ]

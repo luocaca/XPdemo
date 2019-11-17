@@ -1,0 +1,98 @@
+[{SendAppMessageWrapper_TokenValid=true,
+ _wxapi_basereq_transaction=null,
+  _mmessage_appPackage=com.hldj.hmyg,
+   SendAppMessageWrapper_SkipCompressVideo=false,
+    _wxapi_command_type=1,
+ _mmessage_content=weixin://sendreq?appid=wx8349f112c57ef68b,
+  _mmessage_checksum=[B@96da0c,
+   key_auto_login_wizard_exit=true,
+    SendAppMessageWrapper_PkgName=com.hldj.hmyg,
+    SendAppMessageWrapper_BlockInvalidToken=false,
+     _mmessage_sdkVersion=553844737,
+     _wxapi_sendauth_req_scope=snsapi_userinfo,
+     _wxapi_sendauth_req_state=sharesdk_wechat_auth}
+     ]
+
+
+
+     花木易购
+1573990414.844 19931-19931/com.tencent.mm I/EdXposed-Bridge:   getextras--微信授权登陆界面---getextras-----
+1573990414.844 19931-19931/com.tencent.mm I/EdXposed-Bridge: 微信授权登陆界面-----  SendAppMessageWrapper_TokenValid ---> true
+1573990414.844 19931-19931/com.tencent.mm I/EdXposed-Bridge: 微信授权登陆界面-----  _wxapi_basereq_transaction ---> null
+1573990414.844 19931-19931/com.tencent.mm I/EdXposed-Bridge: 微信授权登陆界面-----  android.intent.extra.picked_user_id ---> 0
+1573990414.844 19931-19931/com.tencent.mm I/EdXposed-Bridge: 微信授权登陆界面-----  _mmessage_appPackage ---> com.hldj.hmyg
+1573990414.844 19931-19931/com.tencent.mm I/EdXposed-Bridge: 微信授权登陆界面-----  SendAppMessageWrapper_SkipCompressVideo ---> false
+1573990414.844 19931-19931/com.tencent.mm I/EdXposed-Bridge: 微信授权登陆界面-----  _wxapi_command_type ---> 1
+1573990414.844 19931-19931/com.tencent.mm I/EdXposed-Bridge: 微信授权登陆界面-----  _mmessage_content ---> weixin://sendreq?appid=wx8349f112c57ef68b
+1573990414.844 19931-19931/com.tencent.mm I/EdXposed-Bridge: 微信授权登陆界面-----  _mmessage_checksum ---> [B@2f04cd7
+1573990414.844 19931-19931/com.tencent.mm I/EdXposed-Bridge: 微信授权登陆界面-----  key_auto_login_wizard_exit ---> true
+1573990414.845 19931-19931/com.tencent.mm I/EdXposed-Bridge: 微信授权登陆界面-----  SendAppMessageWrapper_PkgName ---> com.hldj.hmyg
+1573990414.845 19931-19931/com.tencent.mm I/EdXposed-Bridge: 微信授权登陆界面-----  SendAppMessageWrapper_BlockInvalidToken ---> false
+1573990414.845 19931-19931/com.tencent.mm I/EdXposed-Bridge: 微信授权登陆界面-----  android.intent.extra.xspace_userid_selected ---> true
+1573990414.845 19931-19931/com.tencent.mm I/EdXposed-Bridge: 微信授权登陆界面-----  _mmessage_sdkVersion ---> 553844737
+1573990414.845 19931-19931/com.tencent.mm I/EdXposed-Bridge: 微信授权登陆界面-----  _wxapi_sendauth_req_scope ---> snsapi_userinfo
+1573990414.845 19931-19931/com.tencent.mm I/EdXposed-Bridge: 微信授权登陆界面-----  _wxapi_sendauth_req_state ---> sharesdk_wechat_auth
+
+
+1573991174.723 19931-19931/? I/EdXposed-Bridge: 微信授权登陆界面-----  SendAppMessageWrapper_TokenValid ---> true
+1573991174.723 19931-19931/? I/EdXposed-Bridge: 微信授权登陆界面-----  _mmessage_appPackage ---> com.hldj.hmyg
+1573991174.723 19931-19931/? I/EdXposed-Bridge: 微信授权登陆界面-----  SendAppMessageWrapper_SkipCompressVideo ---> false
+1573991174.723 19931-19931/? I/EdXposed-Bridge: 微信授权登陆界面-----  _wxapi_command_type ---> 1
+1573991174.723 19931-19931/? I/EdXposed-Bridge: 微信授权登陆界面-----  _mmessage_content ---> weixin://sendreq?appid=wx8349f112c57ef68b
+1573991174.723 19931-19931/? I/EdXposed-Bridge: 微信授权登陆界面-----  _mmessage_checksum ---> [B@7f4a17e
+1573991174.723 19931-19931/? I/EdXposed-Bridge: 微信授权登陆界面-----  key_auto_login_wizard_exit ---> true
+1573991174.723 19931-19931/? I/EdXposed-Bridge: 微信授权登陆界面-----  SendAppMessageWrapper_PkgName ---> com.hldj.hmyg
+1573991174.723 19931-19931/? I/EdXposed-Bridge: 微信授权登陆界面-----  SendAppMessageWrapper_BlockInvalidToken ---> false
+1573991174.723 19931-19931/? I/EdXposed-Bridge: 微信授权登陆界面-----  android.intent.extra.xspace_userid_selected ---> true
+1573991174.723 19931-19931/? I/EdXposed-Bridge: 微信授权登陆界面-----  _mmessage_sdkVersion ---> 553844737
+1573991174.723 19931-19931/? I/EdXposed-Bridge: 微信授权登陆界面-----  _wxapi_sendauth_req_scope ---> snsapi_userinfo
+1573991174.723 19931-19931/? I/EdXposed-Bridge: 微信授权登陆界面-----  _wxapi_sendauth_req_state ---> sharesdk_wechat_auth
+
+
+     补补超市
+       getextras--微信授权登陆界面---getextras-----
+     1573990248.066 19931-19931/com.tencent.mm I/EdXposed-Bridge: 微信授权登陆界面-----  SendAppMessageWrapper_TokenValid ---> true
+     1573990248.066 19931-19931/com.tencent.mm I/EdXposed-Bridge: 微信授权登陆界面-----  _mmessage_appPackage ---> com.pupumall.customer
+     1573990248.066 19931-19931/com.tencent.mm I/EdXposed-Bridge: 微信授权登陆界面-----  SendAppMessageWrapper_SkipCompressVideo ---> false
+     1573990248.066 19931-19931/com.tencent.mm I/EdXposed-Bridge: 微信授权登陆界面-----  _wxapi_command_type ---> 1
+     1573990248.067 19931-19931/com.tencent.mm I/EdXposed-Bridge: 微信授权登陆界面-----  _mmessage_content ---> weixin://sendreq?appid=wx86233b2f41212f34
+     1573990248.067 19931-19931/com.tencent.mm I/EdXposed-Bridge: 微信授权登陆界面-----  _wxapi_basereq_openid ---> null
+     1573990248.067 19931-19931/com.tencent.mm I/EdXposed-Bridge: 微信授权登陆界面-----  _mmessage_checksum ---> [B@b89486f
+     1573990248.067 19931-19931/com.tencent.mm I/EdXposed-Bridge: 微信授权登陆界面-----  key_auto_login_wizard_exit ---> true
+     1573990248.067 19931-19931/com.tencent.mm I/EdXposed-Bridge: 微信授权登陆界面-----  SendAppMessageWrapper_PkgName ---> com.pupumall.customer
+     1573990248.067 19931-19931/com.tencent.mm I/EdXposed-Bridge: 微信授权登陆界面-----  SendAppMessageWrapper_BlockInvalidToken ---> false
+     1573990248.067 19931-19931/com.tencent.mm I/EdXposed-Bridge: 微信授权登陆界面-----  android.intent.extra.xspace_userid_selected ---> true
+     1573990248.067 19931-19931/com.tencent.mm I/EdXposed-Bridge: 微信授权登陆界面-----  _mmessage_sdkVersion ---> 621019904
+     1573990248.067 19931-19931/com.tencent.mm I/EdXposed-Bridge: 微信授权登陆界面-----  _wxapi_sendauth_req_scope ---> snsapi_userinfo
+     1573990248.067 19931-19931/com.tencent.mm I/EdXposed-Bridge: 微信授权登陆界面-----  _wxapi_sendauth_req_state ---> pupu
+
+
+
+
+
+
+
+
+
+
+
+
+
+     0 = "SendAppMessageWrapper_TokenValid"
+     1 = "_message_token"
+     2 = "_wxapi_basereq_transaction"
+     3 = "android.intent.extra.picked_user_id"
+     4 = "_mmessage_appPackage"
+     5 = "SendAppMessageWrapper_SkipCompressVideo"
+     6 = "_wxapi_command_type"
+     7 = "_mmessage_content"
+     8 = "_wxapi_basereq_openid"
+     9 = "_mmessage_checksum"
+     10 = "key_auto_login_wizard_exit"
+     11 = "SendAppMessageWrapper_PkgName"
+     12 = "SendAppMessageWrapper_BlockInvalidToken"
+     13 = "android.intent.extra.xspace_userid_selected"
+     14 = "_mmessage_sdkVersion"
+     15 = "splash-hack-activity-recreate"
+     16 = "_wxapi_sendauth_req_scope"
+     17 = "_wxapi_sendauth_req_state"

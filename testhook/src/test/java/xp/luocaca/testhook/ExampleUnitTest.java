@@ -1,4 +1,4 @@
-package xp.luocaca.testhook;
+package com.hldj.hmyg;
 
 import org.junit.Test;
 

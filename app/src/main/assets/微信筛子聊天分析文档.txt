@@ -1,0 +1,50 @@
+1111
+   values:${values}talbe = message value =msgId=95 imgPath=da1c289d4e363f3ce1ff36538903b92f createTime=1573522914669 talker=wxid_htspvphkqgry22 content=wxid_fwmzfnbt6dlc22:1573522912127:0:da1c289d4e363f3ce1ff36538903b92f::0
+     isSend=1 type=47 bizChatId=-1 talkerId=31
+2222（---自己--- 222）
+   values:${values}talbe = message value =msgId=101 imgPath=9e3f303561566dc9342a3ea41e6552a6 createTime=1573523022976 talker=wxid_htspvphkqgry22 content=wxid_fwmzfnbt6dlc22:1573523020642:0:9e3f303561566dc9342a3ea41e6552a6::0
+     isSend=1 type=47 bizChatId=-1 talkerId=31
+	 
+	（--伟哥222222--） 
+	 11-12 09:54:53.166 7217-7246/com.tencent.mm I/Wanzi: 拦截微信数据库 values:${values}talbe = message value =msgId=143 msgSvrId=3329503938124786037 talker=7230237521@chatroom content=qiu952153979:0:0:9e3f303561566dc9342a3ea41e6552a6:qiu952153979*#*
+    <msg><emoji fromusername="qiu952153979" tousername="7230237521@chatroom" type="1" idbuffer="media*#*0_0" md5="9e3f303561566dc9342a3ea41e6552a6" len="8178" productid="" androidmd5="9e3f303561566dc9342a3ea41e6552a6" androidlen="8178" s60v3md5="9e3f303561566dc9342a3ea41e6552a6" s60v3len="8178" s60v5md5="9e3f303561566dc9342a3ea41e6552a6" s60v5len="8178" cdnurl="http*#*//emoji.qpic.cn/wx_emoji/YbCHM38dRYCIWbKmiaBrdnPrfuuwicLD2iacSWaPoAiaFrUySG87ELibOXQ/" designerid="" thumburl="" encrypturl="http*#*//emoji.qpic.cn/wx_emoji/dMN390LNvrbqpWm22PNiagDuXENN5V1F633mfwXXSic5yHmq1ibBn3b1Q/" aeskey="b8e0b4f14c83e60f41f72baac6d13091" externurl="http*#*//emoji.qpic.cn/wx_emoji/GUP6ibFCwTZbhpBLkbanBJh6OkjiapCL2hkXw4MKSKTuPwGf3mT3DicDvYicczYTfibsj/" externmd5="5ce491fed083095e5e5f2eee88509773" width="100" height="100" tpurl="" tpauthkey="" attachedtext="" attachedtextcolor="" lensid=""></emoji><gameext type="2" content="5"></gameext></msg>:0
+     flag=0 status=3 msgSeq=673565755 imgPath=9e3f303561566dc9342a3ea41e6552a6 createTime=1573523695000 lvbuffer=[B@371b82a6 isSend=0 type=47 bizChatId=-1 talkerId=109
+11-12 09:54:53.166 7217-7246/com.tencent.mm I/Wanzi:  
+	 
+	 
+ 
+3333
+   values:${values}talbe = message value =msgId=98 imgPath=dbcc51db2765c1d0106290bae6326fc4 createTime=1573522972725 talker=wxid_htspvphkqgry22 content=wxid_fwmzfnbt6dlc22:1573522970392:0:dbcc51db2765c1d0106290bae6326fc4::0
+     isSend=1 type=47 bizChatId=-1 talkerId=31
+ 
+4444
+ 
+  values:${values}talbe = message value =msgId=94 imgPath=9a21c57defc4974ab5b7c842e3232671 createTime=1573522822435 talker=wxid_htspvphkqgry22 content=wxid_fwmzfnbt6dlc22:1573522819893:0:9a21c57defc4974ab5b7c842e3232671::0
+
+
+
+
+ 
+ 5555
+ 
+  values:${values}talbe = message value =msgId=113 imgPath=3a8e16d650f7e66ba5516b2780512830 createTime=1573523094494 talker=wxid_htspvphkqgry22 content=wxid_fwmzfnbt6dlc22:1573523092160:0:3a8e16d650f7e66ba5516b2780512830::0
+     isSend=1 type=47 bizChatId=-1 talkerId=31
+ 
+ 6666
+ 
+  values:${values}talbe = message value =msgId=99 imgPath=5ba8e9694b853df10b9f2a77b312cc09 createTime=1573522988559 talker=wxid_htspvphkqgry22 content=wxid_fwmzfnbt6dlc22:1573522986226:0:5ba8e9694b853df10b9f2a77b312cc09::0
+     isSend=1 type=47 bizChatId=-1 talkerId=31 
+	 
+	 
+	 
+	 11-12 10:04:48.368 7217-7246/com.tencent.mm I/Wanzi: 拦截微信数据库 values:${values}talbe = message value =msgId=148 msgSvrId=5711356113043808913 talker=7230237521@chatroom content=qiu952153979:0:0:5ba8e9694b853df10b9f2a77b312cc09:qiu952153979*#*
+    <msg><emoji fromusername="qiu952153979" tousername="7230237521@chatroom" type="1" idbuffer="media*#*0_0" md5="5ba8e9694b853df10b9f2a77b312cc09" len="8636" productid="" androidmd5="5ba8e9694b853df10b9f2a77b312cc09" androidlen="8636" s60v3md5="5ba8e9694b853df10b9f2a77b312cc09" s60v3len="8636" s60v5md5="5ba8e9694b853df10b9f2a77b312cc09" s60v5len="8636" cdnurl="http*#*//emoji.qpic.cn/wx_emoji/Jowow1icuI3XqtkFeQgIuzjIEYHdtJZictGFJjTsAFwW1g6cx1uTaQfw/" designerid="" thumburl="" encrypturl="http*#*//emoji.qpic.cn/wx_emoji/fbN7c2icrIwtohia97piaJXrZlgWxHcnskicaQroC4DCrmZRQfKAJ3NRXw/" aeskey="3fdf25c8f5d515c7aaee85d78e1741f9" externurl="http*#*//emoji.qpic.cn/wx_emoji/zicncNWCkcbic42sJajDicHAlT5WlEVmZS9PTicNTDib4bcyoicSEm54LBbv1ZeqUKj9XR/" externmd5="87aaec30a246453181ad7eb9271f1d23" width="100" height="100" tpurl="" tpauthkey="" attachedtext="" attachedtextcolor="" lensid=""></emoji><gameext type="2" content="9"></gameext></msg>:0
+     flag=0 status=3 msgSeq=673565760 imgPath=5ba8e9694b853df10b9f2a77b312cc09 createTime=1573524291000 lvbuffer=[B@21dd18ad isSend=0 type=47 bizChatId=-1 talkerId=109
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+ 

@@ -1,4 +1,4 @@
-package xp.luocaca.xpdemo.wechat.share;
+package com.hldj.hmyg.wechat.share;
 
 import android.app.Activity;
 import android.app.Application;

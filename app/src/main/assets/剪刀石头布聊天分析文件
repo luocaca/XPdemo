@@ -1,0 +1,30 @@
+
+剪刀样本 1
+  监听微信消息insertMsgDBListener content value -->msgId=376 imgPath=514914788fc461e7205bf0b6ba496c49 createTime=1573616495768 talker=wxid_htspvphkqgry22 content=wxid_fwmzfnbt6dlc22:1573616493236:0:514914788fc461e7205bf0b6ba496c49::0
+     isSend=1 type=47 bizChatId=-1 talkerId=31
+剪刀样本 2
+  监听微信消息insertMsgDBListener content value -->msgId=377 imgPath=514914788fc461e7205bf0b6ba496c49 createTime=1573616520286 talker=wxid_htspvphkqgry22 content=wxid_fwmzfnbt6dlc22:1573616517754:0:514914788fc461e7205bf0b6ba496c49::0
+     isSend=1 type=47 bizChatId=-1 talkerId=31
+
+
+石头 1
+  监听微信消息insertMsgDBListener content value -->msgId=374 imgPath=f790e342a02e0f99d34b316547f9aeab createTime=1573616467719 talker=wxid_htspvphkqgry22 content=wxid_fwmzfnbt6dlc22:1573616465186:0:f790e342a02e0f99d34b316547f9aeab::0
+     isSend=1 type=47 bizChatId=-1 talkerId=31
+石头 2
+ 监听微信消息insertMsgDBListener content value -->msgId=375 imgPath=f790e342a02e0f99d34b316547f9aeab createTime=1573616481817 talker=wxid_htspvphkqgry22 content=wxid_fwmzfnbt6dlc22:1573616479286:0:f790e342a02e0f99d34b316547f9aeab::0
+     isSend=1 type=47 bizChatId=-1 talkerId=31
+
+
+
+
+布样本 1
+
+ 监听微信消息insertMsgDBListener content value -->msgId=373 imgPath=091577322c40c05aa3dd701da29d6423 createTime=1573616419489 talker=wxid_htspvphkqgry22 content=wxid_fwmzfnbt6dlc22:1573616416957:0:091577322c40c05aa3dd701da29d6423::0
+     isSend=1 type=47 bizChatId=-1 talkerId=31
+
+
+布样本 2
+
+ 监听微信消息insertMsgDBListener content value -->msgId=378 imgPath=091577322c40c05aa3dd701da29d6423 createTime=1573616533236 talker=wxid_htspvphkqgry22 content=wxid_fwmzfnbt6dlc22:1573616530704:0:091577322c40c05aa3dd701da29d6423::0
+     isSend=1 type=47 bizChatId=-1 talkerId=31
+
