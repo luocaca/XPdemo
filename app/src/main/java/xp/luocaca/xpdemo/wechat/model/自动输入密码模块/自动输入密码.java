@@ -23,7 +23,7 @@ public class 自动输入密码 {
         XposedHelpers.findAndHookMethod(
                 "com.tencent.mm.wallet_core.ui.formview.EditHintPasswdView",
                 lpparam.classLoader,
-                "aI",
+                "aL",
                 Context.class,
                 new XC_MethodHook() {
                     @Override

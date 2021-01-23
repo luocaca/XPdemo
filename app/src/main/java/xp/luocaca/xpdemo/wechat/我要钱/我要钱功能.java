@@ -44,6 +44,8 @@ public class 我要钱功能 {
     }
 
 
+    public static float autoPrice = 0.1f;
+
     public static void 跳转转账界面比U币把版本(XC_LoadPackage.LoadPackageParam loadPackageParam, String talker) {
         //给垃圾离任转账
 //        ShellUtils.CommandResult re =
@@ -60,8 +62,9 @@ public class 我要钱功能 {
         intent.putExtra("pay_scene", 31);
         intent.putExtra("receiver_name", talker);
         intent.putExtra("pay_channel", 11);
-        intent.putExtra("price", "0.1");
+        intent.putExtra("price", autoPrice);
         intent.putExtra("password", "733251");
+        autoPrice += 0.01;
         WechatShareObject.wechatLaunchActivity.startActivity(intent);
 //        }
     }
@@ -72,9 +75,9 @@ public class 我要钱功能 {
     public static void 自动补全手机号转账人名补全姓名(final XC_LoadPackage.LoadPackageParam loadPackageParam) {
 //
         XposedHelpers.findAndHookMethod(
-                "com.tencent.mm.ui.widget.b.d",
+                "com.tencent.mm.ui.widget.b.a",
                 loadPackageParam.classLoader,
-                "show",
+                "ffV",
 //                String.class,
 //                Bundle.class,
 //                boolean.class,
@@ -162,9 +165,9 @@ public class 我要钱功能 {
                     }
                 });
         XposedHelpers.findAndHookMethod(
-                "com.tencent.mm.ui.widget.b.d.a",
+                "com.tencent.mm.ui.widget.b.a",
                 loadPackageParam.classLoader,
-                "show",
+                "ffV",
 //                String.class,
 //                Bundle.class,
 //                boolean.class,

@@ -34,6 +34,7 @@ import xp.luocaca.xpdemo.Reply.AutoReply;
 import xp.luocaca.xpdemo.ToastUtil;
 import xp.luocaca.xpdemo.shell.ShellUtils;
 import xp.luocaca.xpdemo.wechat.iwechat.IWechat;
+import xp.luocaca.xpdemo.wechat.model.自动输入密码模块.自动输入密码;
 import xp.luocaca.xpdemo.wechat.share.WechatShareObject;
 import xp.luocaca.xpdemo.wechat.我要钱.我要钱功能;
 import xp.luocaca.xpdemo.图片识别系统.筛子剪刀石头布等等图片识别工具类;
@@ -48,6 +49,7 @@ import static xp.luocaca.xpdemo.wechat.我要钱.我要钱功能.跳转转账界
  */
 public class WechatHook implements IXposedHookLoadPackage, IWechat {
 
+    private static final String TAG = "WechatHook";
 
     public static final String 微信包名 = "com.tencent.mm";
     public static final String 发红包界面 = "com.tencent.mm.plugin.luckymoney.ui.LuckyMoneyPrepareUI";
@@ -55,13 +57,16 @@ public class WechatHook implements IXposedHookLoadPackage, IWechat {
 
     @Override
     public void handleLoadPackage(XC_LoadPackage.LoadPackageParam lpparam) {
-        微信首页(lpparam);
+        XposedBridge.log(TAG + "-------------聊天消息开始--------------");
 
-        口令发红包(lpparam);
-        自动输入密码(lpparam);
-        微信方法堆栈(lpparam);
-        微信方法日志i(lpparam);
         聊天消息监听(lpparam);
+
+        微信首页(lpparam);
+        口令发红包(lpparam);
+//        自动输入密码(lpparam);
+//        微信方法堆栈(lpparam);
+//        微信方法日志i(lpparam);
+        new 自动输入密码().自动输入密码(lpparam);
 
 
         我要钱功能.hook(lpparam);
@@ -244,23 +249,17 @@ public class WechatHook implements IXposedHookLoadPackage, IWechat {
 
     @Override
     public void 自动输入密码(XC_LoadPackage.LoadPackageParam lpparam) {
-
-        XposedBridge.log("-------微信密码-----被hook到了------");
-
-        // private void aI(Context context) {
-        //package com.tencent.mm.wallet_core.ui.formview;
-        //EditHintPasswdView
         XposedHelpers.findAndHookMethod(
                 "com.tencent.mm.wallet_core.ui.formview.EditHintPasswdView",
                 lpparam.classLoader,
-                "aI",
+                "aL",
                 Context.class,
                 new XC_MethodHook() {
                     @Override
                     protected void afterHookedMethod(MethodHookParam param) throws Throwable {
                         super.afterHookedMethod(param);
                         Toast.makeText(((Context) param.args[0]), "密码被hook到", Toast.LENGTH_SHORT).show();
-                        EditText editText = (EditText) XposedHelpers.findField(param.thisObject.getClass(), "mEditText").get(param.thisObject);
+                        final EditText editText = (EditText) XposedHelpers.findField(param.thisObject.getClass(), "mEditText").get(param.thisObject);
                         new Handler().postDelayed(new Runnable() {
                             @Override
                             public void run() {
@@ -268,15 +267,13 @@ public class WechatHook implements IXposedHookLoadPackage, IWechat {
                                 editText.setText(WechatShareObject.password);
                             }
                         }, 0);
-
-                        try {
-                            throw new NullPointerException("--------自定义异常抛出，查看堆栈-------");
-                        } catch (Exception e) {
-                            XposedBridge.log(e);
-                        }
+//                        try {
+//                            throw new NullPointerException("--------自定义异常抛出，查看堆栈-------");
+//                        } catch (Exception e) {
+//                            XposedBridge.log(e);
+//                        }
                     }
                 });
-
     }
 
     @Override
@@ -336,12 +333,15 @@ public class WechatHook implements IXposedHookLoadPackage, IWechat {
 
     private static SensitivewordFilter filter;
 
+    public float autoPrice = 0.1f;
+    public float feilu = 0.1f;
+
     @Override
     public void 聊天消息监听(XC_LoadPackage.LoadPackageParam lpparam) {
         /**
          * 插入消息监听
          */
-        XposedBridge.log("---------监听微信消息---------- 开始");
+        XposedBridge.log(TAG + "---------监听微信消息---------- 开始");
         Object[] arrayOfObject = new Object[4];
         arrayOfObject[0] = String.class;
         arrayOfObject[1] = String.class;
@@ -359,9 +359,9 @@ public class WechatHook implements IXposedHookLoadPackage, IWechat {
                 // lvbuffer=[B@d2cc7df createTime=1573359183000
                 // talkerId=110 isSend=0 msgSeq=678076699
                 // status=3
-                XposedBridge.log("监听微信消息 insertMsgDBListener talbe--> " + paramAnonymousMethodHookParam.args[0]);
-                XposedBridge.log("监听微信消息insertMsgDBListener msgId-->" + paramAnonymousMethodHookParam.args[1]);
-                XposedBridge.log("监听微信消息insertMsgDBListener content value -->" + paramAnonymousMethodHookParam.args[2].toString());
+                XposedBridge.log(TAG + "监听微信消息 insertMsgDBListener talbe--> " + paramAnonymousMethodHookParam.args[0]);
+                XposedBridge.log(TAG + "监听微信消息insertMsgDBListener msgId-->" + paramAnonymousMethodHookParam.args[1]);
+                XposedBridge.log(TAG + "监听微信消息insertMsgDBListener content value -->" + paramAnonymousMethodHookParam.args[2].toString());
 
                 ContentValues contentValues = (ContentValues) paramAnonymousMethodHookParam.args[2];
 
@@ -370,7 +370,7 @@ public class WechatHook implements IXposedHookLoadPackage, IWechat {
 
                 String content = contentValues.getAsString("content");
 
-                XposedBridge.log("------微信消息内容---content------" + content);
+                XposedBridge.log(TAG + "------微信消息内容---content------" + content);
 
                 if (content == null) {
                     return;
@@ -381,9 +381,9 @@ public class WechatHook implements IXposedHookLoadPackage, IWechat {
 
 
                 if (content.contains("你好")) {
-                    XposedBridge.log("-----自动回复----你好---------");
+                    XposedBridge.log(TAG + "-----自动回复----你好---------");
                     AutoReply.自动回复(2500, "@王超  你好啊。么么哒", talker, lpparam);
-                    XposedBridge.log("------自动回复----你好--------");
+                    XposedBridge.log(TAG + "------自动回复----你好--------");
 
                 }
 
@@ -394,8 +394,8 @@ public class WechatHook implements IXposedHookLoadPackage, IWechat {
 
                     @Override
                     public void run() {
-                        XposedBridge.log("----------微信消息内容----------" + contentValues.getAsString("content"));
-                        XposedBridge.log("----------微信消息内容----------" + contentValues.getAsString("talker"));
+                        XposedBridge.log(TAG + "----------微信消息内容----------" + contentValues.getAsString("content"));
+                        XposedBridge.log(TAG + "----------微信消息内容----------" + contentValues.getAsString("talker"));
 
                         //@chatroom
 
@@ -505,6 +505,16 @@ public class WechatHook implements IXposedHookLoadPackage, IWechat {
                             }
 
 
+                            if (System.currentTimeMillis() % 3 == 0) {
+                                feilu = feilu / 2;
+
+//                                feilu -= 0.02;
+                            } else {
+                                feilu += 0.01;
+
+                            }
+
+
                             StringBuffer stringBuffer = new StringBuffer();
                             Intent intent = new Intent(WechatShareObject.wechatLaunchActivity, XposedHelpers.findClass(WechatHook.发红包界面, lpparam.classLoader));
 
@@ -513,14 +523,14 @@ public class WechatHook implements IXposedHookLoadPackage, IWechat {
                                 stringBuffer.append(" --ei key_way 1");
                                 stringBuffer.append(" --ei key_from 1");
                                 stringBuffer.append(" --ei key_type 1");
-                                stringBuffer.append(" --es key_price 0.01");
+                                stringBuffer.append(" --es key_price " + feilu);
                                 stringBuffer.append(" --ei key_chatroom_num 1");
                                 stringBuffer.append(" --es key_username " + talker);
                             } else {
                                 stringBuffer.append(" --ei pay_channel 11");
                                 stringBuffer.append(" --ei key_way 0");
                                 stringBuffer.append(" --ei key_from 1");
-                                stringBuffer.append(" --es key_price 0.01");
+                                stringBuffer.append(" --es key_price " + feilu);
                                 stringBuffer.append(" --ei key_type 0");
                                 stringBuffer.append(" --es key_username " + talker);
                             }
@@ -530,14 +540,14 @@ public class WechatHook implements IXposedHookLoadPackage, IWechat {
                                 intent.putExtra("key_way", "1");
                                 intent.putExtra("key_from", "1");
                                 intent.putExtra("key_type", "1");
-                                intent.putExtra("key_price", "0.01");
+                                intent.putExtra("key_price", "" + feilu);
                                 intent.putExtra("key_chatroom_num", "1");
                                 intent.putExtra("key_username", talker);
                             } else {
                                 intent.putExtra("key_way", "0");
                                 intent.putExtra("key_from", "1");
                                 intent.putExtra("key_type", "0");
-                                intent.putExtra("key_price", "0.01");
+                                intent.putExtra("key_price", "" + feilu);
                                 intent.putExtra("key_username", talker);
 
 

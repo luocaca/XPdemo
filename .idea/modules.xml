@@ -2,7 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/StudioProjects-XPdemo.iml" filepath="$PROJECT_DIR$/.idea/modules/StudioProjects-XPdemo.iml" group="XPdemo" />
       <module fileurl="file://$PROJECT_DIR$/XPdemo.iml" filepath="$PROJECT_DIR$/XPdemo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/XPdemo-app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/XPdemo-app.iml" group="XPdemo/app" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/testhook/XPdemo-testhook.iml" filepath="$PROJECT_DIR$/.idea/modules/testhook/XPdemo-testhook.iml" group="XPdemo/testhook" />
       <module fileurl="file://$PROJECT_DIR$/XPdemo666.iml" filepath="$PROJECT_DIR$/XPdemo666.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/testhook/testhook.iml" filepath="$PROJECT_DIR$/testhook/testhook.iml" />
