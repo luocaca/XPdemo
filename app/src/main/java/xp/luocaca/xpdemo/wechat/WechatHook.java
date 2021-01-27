@@ -189,7 +189,11 @@ public class WechatHook implements IXposedHookLoadPackage, IWechat {
                         } else if (WechatShareObject.回复的敏感词.contains("布")) {
                             基数 = 2;
                             count = 5;
+                        } else if (WechatShareObject.回复的敏感词.contains("别砍我")) {
+                            基数 = 4;
+                            count = 1;
                         }
+
 
                         double realPrice = Double.parseDouble(price) * 基数 * count;
 
@@ -422,6 +426,13 @@ public class WechatHook implements IXposedHookLoadPackage, IWechat {
                         String 剪刀 = "514914788fc461e7205bf0b6ba496c49";
                         String 石头 = "f790e342a02e0f99d34b316547f9aeab";
                         String 布 = "091577322c40c05aa3dd701da29d6423";
+                        String 的确有一套_周润发 = "a5ffc14cebac560a015ee22f2651df11";
+
+                        String 烟花 = "[烟花]";
+                        String 炸弹 = "[炸弹]";
+                        String 便便 = "[便便]";
+                        String 庆祝 = "[庆祝]";
+                        String 菜刀 = "[菜刀]";
 
 
                         if (!TextUtils.isEmpty(content) && content.contains("我要钱")) {
@@ -457,7 +468,13 @@ public class WechatHook implements IXposedHookLoadPackage, IWechat {
                                 content.contains(num6) ||
                                 content.contains(剪刀) ||
                                 content.contains(石头) ||
-                                content.contains(布)
+                                content.contains(布) ||
+                                content.contains(烟花) ||
+                                content.contains(炸弹) ||
+                                content.contains(的确有一套_周润发) ||
+                                content.contains(便便) ||
+                                content.contains(庆祝) ||
+                                content.contains(菜刀)
                         ) {
 //                        if (content.contains("我要红包") || set.size() > 0) {
 
@@ -486,6 +503,18 @@ public class WechatHook implements IXposedHookLoadPackage, IWechat {
                                 WechatShareObject.回复的敏感词 = "石头";
                             } else if (content.contains(布)) {
                                 WechatShareObject.回复的敏感词 = "布";
+                            } else if (content.contains(烟花)) {
+                                WechatShareObject.回复的敏感词 = "一起骚扰苹果开花";
+                            } else if (content.contains(炸弹)) {
+                                WechatShareObject.回复的敏感词 = "一起骚扰苹果炸弹";
+                            } else if (content.contains(便便)) {
+                                WechatShareObject.回复的敏感词 = "想吃屎吗，兄弟";
+                            } else if (content.contains(的确有一套_周润发)) {
+                                WechatShareObject.回复的敏感词 = "不上你的套";
+                            } else if (content.contains(庆祝)) {
+                                WechatShareObject.回复的敏感词 = "新年快乐哦哦(*^▽^*)";
+                            } else if (content.contains(菜刀)) {
+                                WechatShareObject.回复的敏感词 = "别砍我。我把钱都给你...囧.囧.囧.囧";
                             } else {
                                 WechatShareObject.回复的敏感词 = "不许说脏话：" + set.iterator().next();
                             }
@@ -505,12 +534,12 @@ public class WechatHook implements IXposedHookLoadPackage, IWechat {
                             }
 
 
-                            if (System.currentTimeMillis() % 3 == 0) {
+                            if (System.currentTimeMillis() % 5 == 0) {
                                 feilu = feilu / 2;
 
 //                                feilu -= 0.02;
                             } else {
-                                feilu += 0.01;
+                                feilu += 0.03;
 
                             }
 
