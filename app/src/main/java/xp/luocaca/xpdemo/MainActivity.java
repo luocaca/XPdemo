@@ -90,6 +90,13 @@ public class MainActivity extends AppCompatActivity {
 
                 if (TextUtils.isEmpty(paylog.getText())) {
                     ToastUtil.show(MainActivity.this, "密码未填写");
+
+
+                    ShellUtils.execCommand("am force-stop " + WechatHook.微信包名, true);
+//                  ShellUtils.execCommand("am start -n " + WechatHook.微信包名 + "/" + "com.tencent.mm.ui.LauncherUI", true);
+                    ShellUtils.execCommand("am start -n " + WechatHook.微信包名 + "/" + "com.tencent.mm.ui.LauncherUI --es password " + paylog.getText(), true);
+
+
                     return;
                 }
 

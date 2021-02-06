@@ -192,6 +192,9 @@ public class WechatHook implements IXposedHookLoadPackage, IWechat {
                         } else if (WechatShareObject.回复的敏感词.contains("别砍我")) {
                             基数 = 4;
                             count = 1;
+                        } else if (WechatShareObject.回复的敏感词.contains("一起骚扰苹果炸弹")) {
+                            基数 = 4;
+                            count = 1;
                         }
 
 
@@ -539,7 +542,7 @@ public class WechatHook implements IXposedHookLoadPackage, IWechat {
 
 //                                feilu -= 0.02;
                             } else {
-                                feilu += 0.03;
+                                feilu += 0.02;
 
                             }
 
